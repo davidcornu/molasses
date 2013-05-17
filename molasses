@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+
+var http    = require('http');
+var URI     = require('URIjs');
+var request = require('request');
+
+var argv = require('optimist')
+  .default('port', 3000)
+  .describe('port', 'Port to listen on')
+  .default('delay', 5000)
+  .describe('delay', 'Number of milliseconds to delay the request')
+  .usage('Usage: molasses --target [host]')
+  .demand('target')
+  .describe('target', 'URL of the resource you would like to slow down')
+  .argv;
+
+var targetURI = new URI(argv.target);
+
+var server = http.createServer(function(req, res){
+  setTimeout(function(){
+    var remoteURI = targetURI.clone().resource(req.url);
+    var proxy     = request(remoteURI.toString());
+    req.pipe(proxy).pipe(res);
+  }, parseInt(argv.delay, 10));
+});
+
+server.listen(argv.port);
+
+server.once('listening', function(){
+  console.log('Port %s is now slow as molasses.', argv.port);
+});

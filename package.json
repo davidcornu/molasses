@@ -1,0 +1,27 @@
+{
+  "name": "molasses",
+  "version": "0.0.1",
+  "description": "Slow down your remote http calls to test failure scenarios.",
+  "keywords": [
+    "proxy",
+    "http",
+    "testing",
+    "test",
+    "timeout"
+  ],
+  "author": "David Cornu <hello@davidcornu.com>",
+  "license": "BSD",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidcornu/molasses.git"
+  },
+  "dependencies": {
+    "URIjs": "~1.10.2",
+    "request": "~2.21.0",
+    "optimist": "~0.4.0"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "molasses": "./molasses"
+  }
+}
