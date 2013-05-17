@@ -19,6 +19,6 @@ Missing required arguments: target
 ```
 
 ```
-$ molases --target http://127.0.0.1:5984 --port 5985 --delay 30000
+$ molasses --target http://127.0.0.1:5984 --port 5985 --delay 30000
 Port 5985 is now slow as molasses.
 ```
